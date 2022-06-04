@@ -7,11 +7,6 @@ const main = async () => {
   let mintNFT = await nftContract.makeAChickenNFT()
   await mintNFT.wait()
   console.log("Minted NFT #1")
-  
-  let mintSecondNFT = await nftContract.makeAChickenNFT()
-  await mintSecondNFT.wait()
-  console.log("Minted NFT #2")
-
 }
 
 const runMain = async () => {
