@@ -1,6 +1,9 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 
+import { ConnectWalletModal } from "../components/ConnectWalletModal";
+import { WalletProfileModal } from "../components/WalletProfileModal";
+
 export default function Home() {
   return (
     <Flex w="100%" h="100%" direction="column" alignItems="center" pb="8">
@@ -8,6 +11,10 @@ export default function Home() {
         <title>Chicken NFT Mint</title>
         <meta name="description" content="Mint an epic chicken NFT" />
       </Head>
+
+      <ConnectWalletModal />
+
+      <WalletProfileModal />
 
       <Flex
         as="main"

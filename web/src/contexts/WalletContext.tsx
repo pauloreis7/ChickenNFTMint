@@ -47,7 +47,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
   useEffect(() => {
     const lastWalletConnector = localStorage.getItem(
-      "@ideaschain.last-wallet-connector"
+      "@chickennftmint.last-wallet-connector"
     ) as ConnectorsName;
 
     if (lastWalletConnector) {
@@ -77,7 +77,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
     setConnectorName(connectorType as ConnectorsName);
     localStorage.setItem(
-      "@ideaschain.last-wallet-connector",
+      "@chickennftmint.last-wallet-connector",
       String(connectorType)
     );
   }, [connector, account]);
@@ -107,7 +107,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
         position: "top-right",
       });
     } finally {
-      localStorage.setItem("@ideaschain.last-wallet-connector", "metaMask");
+      localStorage.setItem("@chickennftmint.last-wallet-connector", "metaMask");
 
       setWalletModalOpen(false);
     }
@@ -126,7 +126,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
       }
 
       localStorage.setItem(
-        "@ideaschain.last-wallet-connector",
+        "@chickennftmint.last-wallet-connector",
         "walletConnect"
       );
 
@@ -150,7 +150,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
   }
 
   function handleSignOut() {
-    localStorage.removeItem("@ideaschain.last-wallet-connector");
+    localStorage.removeItem("@chickennftmint.last-wallet-connector");
 
     deactivate();
 
