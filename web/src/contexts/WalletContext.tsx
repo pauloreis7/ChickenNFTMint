@@ -20,6 +20,8 @@ type WalletContextData = {
   walletFormatted: string | null;
   isWalletModalOpen: boolean;
   isWalletProfileModalOpen: boolean;
+  mintSuccessModalIsOpen: boolean;
+  setMintSuccessModalIsOpen: (isOpen: boolean) => void;
   setWalletModalOpen: (isOpen: boolean) => void;
   setIsWalletProfileModalOpen: (isOpen: boolean) => void;
   handleMetaMask: () => Promise<void>;
@@ -40,6 +42,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
   const [isWalletModalOpen, setWalletModalOpen] = useState(false);
   const [isWalletProfileModalOpen, setIsWalletProfileModalOpen] =
     useState(false);
+  const [mintSuccessModalIsOpen, setMintSuccessModalIsOpen] = useState(false);
   const [connectorName, setConnectorName] = useState<ConnectorsName | null>(
     null
   );
@@ -164,6 +167,8 @@ export function WalletProvider({ children }: WalletProviderProps) {
         walletFormatted,
         isWalletModalOpen,
         isWalletProfileModalOpen,
+        mintSuccessModalIsOpen,
+        setMintSuccessModalIsOpen,
         setWalletModalOpen,
         setIsWalletProfileModalOpen,
         handleMetaMask,

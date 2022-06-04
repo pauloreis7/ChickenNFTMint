@@ -1,14 +1,25 @@
-import { Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  Text,
+  Link as ChakraLink,
+  useToast,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
 import Head from "next/head";
+import Link from "next/link";
 
 import chickenNFTABI from "../config/ChickenNFT.json";
 
 import { ConnectWalletModal } from "../components/ConnectWalletModal";
 import { WalletProfileModal } from "../components/WalletProfileModal";
+import { MintSuccessModal } from "../components/MintSuccessModal";
 
-const CONTRACT_ADDRESS = "0x85a18211e19ba6e21EF739d228FEA670058B0699";
+const CONTRACT_ADDRESS = "0xD68aD3DABDD668b8638ce8D8d364B3e5450581e2";
+const OPEN_SEA_COLLECTION_LINK =
+  "https://testnets.opensea.io/collection/squarenft-66aojqiwni";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,14 +44,13 @@ export default function Home() {
         console.log("pop wallet to pay gas...");
         let nftTxn = await connectedContract.makeAChickenNFT();
 
-        console.log("mining...please wait.");
+        console.log("wait mining...");
         await nftTxn.wait();
 
         toast({
           title: "NFT successfully minted",
-          description: `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`,
           status: "success",
-          duration: 10000,
+          duration: 4000,
           isClosable: true,
           position: "top-right",
         });
@@ -73,6 +83,8 @@ export default function Home() {
       <ConnectWalletModal />
 
       <WalletProfileModal />
+
+      <MintSuccessModal contractAddress={CONTRACT_ADDRESS} />
 
       <Flex
         as="main"
@@ -109,6 +121,7 @@ export default function Home() {
           onClick={handleMint}
           isLoading={isLoading}
           loadingText="Minting"
+          mb="6"
           px="12"
           py="8"
           colorScheme="orange"
@@ -116,6 +129,18 @@ export default function Home() {
         >
           Mint NFT
         </Button>
+
+        <Link href={OPEN_SEA_COLLECTION_LINK} passHref>
+          <ChakraLink
+            isExternal
+            display="flex"
+            textAlign="center"
+            fontSize="lg"
+            color="blue.500"
+          >
+            🌊 View Collection on OpenSea
+          </ChakraLink>
+        </Link>
       </Flex>
     </Flex>
   );
